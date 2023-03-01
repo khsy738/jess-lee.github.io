@@ -1,18 +1,99 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Jess's Amazing Website</title>
+        <title>A new website!</title>
+        <style>
+            body {
+                background: rgb(241, 154, 154);
+                color: rgb(45, 45, 45);
+                padding: 10px;
+                font-family: arial;
+            }
+            #all-contents {
+                max-width: 800px;
+                margin: auto;
+            }
+        
+            /* navigation menu */
+            nav {
+                background: rgb(85, 0, 0);
+                margin-bottom: 20px;
+                display: flex;
+                padding: 10px;
+                border-radius: 10px;
+            }
+            nav h1 {
+                display: flex;
+                align-items: center;
+                color: white;
+                flex: 1;
+                margin: 0;
+            }
+            nav ul {
+                list-style-image: none;
+            }
+            nav li {
+                display: inline-block;
+                padding: 0 10px;
+            }
+            nav a {
+                text-decoration: none;
+                color: #fff;
+            }
+        
+            /* main container area beneath menu */
+            main {
+                background: rgb(255, 254, 253);
+                display: flex;
+            }
+            .sidebar {
+                margin-right: 25px;
+                padding: 10px;
+            }
+            .sidebar img {
+                width: 200px;
+            }
+            .content {
+                flex: 1;
+                padding: 15px;
+            }
+            h2, h3 {
+                margin: 0px;
+            }
+        </style>
     </head>
 
     <body>
-        <h1>Is this working?</h1>
         <div id="all-contents"> 
             <nav>
-    
+                <h1>A Website</h1>
+                <ul>
+                    <li>
+                      <a href="index.html"> Home </a>
+                    </li>
+                    <li>
+                      <a href="portfolio.html"> Portfolio </a>
+                  </li>
+                </ul>
             </nav>
     
             <main>
-    
+                <div class="sidebar">
+                    <img src="https://img.goodsmileus.com/image/cache/data/productimages/OtherFigures/HELLO!GOODSMILEMadokaKaname/02_2207131615054927-1200x1200.jpg">
+                </div>
+            
+                <div class="content">
+                    <h2>Jess Lee</h2>
+                    <p>Student at Operation Spark</p>
+                    <div id="interests">
+                        <h3>Interests</h3>
+                        <ul>
+                            <li>Books</li>
+                            <li>Movies</li>
+                            <li>Television</li>
+                        </ul>
+                    </div>
+                </div>
             </main>
         </div>
     </body>
