@@ -151,9 +151,44 @@ var friendFirstLetterCount = function(array, customerName, letter) {
     return customerNames;
   };
 
-var topThreeTags;
+  var topThreeTags = function(people) {
+    // Get an array of all tags
+    let allTags = _.reduce(people, function(result, person) {
+      return result.concat(person.tags);
+    }, []);
+  
+    // Count each tag using _.reduce()
+    let tagCount = _.reduce(allTags, function(result, tag) {
+      if (result[tag]) {
+        result[tag]++;
+      } else {
+        result[tag] = 1;
+      }
+      return result;
+    }, {});
+  
+    // Sort the tags by count and return the top three
+    let sortedTags = Object.keys(tagCount).sort(function(a, b) {
+      return tagCount[b] - tagCount[a];
+    });
+  
+    return sortedTags.slice(0, 3);
+  };
 
-var genderCount;
+  var genderCount = function(array) {
+    // use _.reduce() to accumulate the count of each gender in the array
+    let genderCount = _.reduce(array, function(accumulator, current) {
+      // if accumulator has the gender as a property, add 1 to that property, else create that property and assign 1 to it
+      if (accumulator[current.gender]) {
+        accumulator[current.gender]++;
+      } else {
+        accumulator[current.gender] = 1;
+      }
+      return accumulator;
+    }, {});
+    // return an object with the count of each gender
+    return genderCount;
+  };
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
