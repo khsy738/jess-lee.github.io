@@ -94,18 +94,7 @@ module.exports.identity = identity;
   
   module.exports.first = first;
 
-  /**
- * last: Takes an array and a number and returns the last number of elements in 
- * the array if number is passed in or the last element in the array if no number 
- * is passed in. If array is not an array then return an empty array. If the number 
- * is negative, return an empty array. If the number is greater than the length of 
- * the array, then return the whole array. 
- * 
- * @param {Array} array: The array from which to take the last elements.
- * @param {Number} number: The number of elements to take from the end of the array.
- * @returns {Array}: Returns an array of the last number of elements in the array or
- * just the last element in the array if number is not passed in.
- */
+ 
 
 function last(array, number) {
     if (!Array.isArray(array)) {
