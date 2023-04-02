@@ -16,28 +16,140 @@ var _ = require('underbar'); // { filter: function(), map: function(){} }
  *
  * 4. To test your work, run the following command in your terminal:
  *
- *    npm start --prefix ./<YOUR_GITHUB_FOLDER/projects/let-s-get-functional
+ *    npm start --prefix ./jess-lee.github.io/projects/let-s-get-functional
  *
  *    IMPORTANT: Make sure you replace <YOUR_GITHUB_FOLDER with your actual github folder name that is in your workspace.
  */
 
-var maleCount = function(array) {
+/*
+filter 
+    // best for problems when you are searching for items that meet a certain condition 
+map
+    // best for problems when you want to return a new array with every item "motified"
+reduce
+    // best for when you want to accumulate a single return value 
 
+*/
+var maleCount = function(array) {
+    // use _.filter() to return an array of only male customers 
+    // iterate through collection and pass each object as a test function 
+    // if "test function" returns true, item is pushed to an output array
+    let males = _.filter(array, function(customer){
+        return customer.gender === 'male';
+    }); // [ {male}, {male}, {male} ]
+    return males.length;
 };
 
-var femaleCount;
+var femaleCount = function(array){
+    // use _.reduce() to accumulate the number of female customers 
+    let females = _.reduce(array, function (accumulator, current){ // number of female customers | current item 
+        // accumulator = 0 | current = { name: 'Adele Mullin', gender 'female }
+        if (current.gender === 'female') {
+            accumulator += 1;
+        }
+        return accumulator; 
+    }, 0);
+    // return number of female customers returned above 
+    return females;
+};
 
-var oldestCustomer;
+/*
+// invoke reduce 
+    // seed is defined? TRUE
+        result = 0
+        // iterate 
+            // 0
+                // result = func(0, {0}, 0, [customers])
+*/
+var oldestCustomer = function(array) {
+    // use _.reduce() to find the customer with the highest age
+    let oldest = _.reduce(array, function (accumulator, current){ // highest age customer | current item 
+        // accumulator = { age: 0 } | current = { name: 'Adele Mullin', age: 29 }
+        if (current.age > accumulator.age) {
+            accumulator = current;
+        }
+        return accumulator; 
+    }, { age: 0 }); // initialize accumulator to object with age: 0
+    // return the name of the oldest customer
+    return oldest.name;
+};
 
-var youngestCustomer;
+var youngestCustomer = function(array) {
+    // use _.reduce() to find the customer with the lowest age
+    let youngest = _.reduce(array, function (accumulator, current){ // lowest age customer | current item 
+        // accumulator = first customer in array | current = { name: 'Adele Mullin', age: 29 }
+        if (current.age < accumulator.age) {
+            accumulator = current;
+        }
+        return accumulator; 
+    }, array[0]); // initialize accumulator to first item in array
+    
+    // return the name of the youngest customer
+    return youngest.name;
+};
 
-var averageBalance;
+var averageBalance = function(array) {
+    // use _.reduce() to accumulate the total balance of all customers
+    let totalBalance = _.reduce(array, function(accumulator, current) {
+        // accumulator = 0 | current = { name: 'Adele Mullin', balance: '$3,868.37' }
+        // remove dollar sign and commas from balance string and convert to a number
+        let balance = Number(current.balance.split('$').join('').split(',').join(''));
+        return accumulator + balance;
+    }, 0);
 
-var firstLetterCount;
+    // divide total balance by number of customers to get average balance
+    return totalBalance / array.length;
+};
 
-var friendFirstLetterCount;
+var firstLetterCount = function(array, letter) {
+    // use _.filter() to return an array of customers with names starting with the given letter 
+    let matchingCustomers = _.filter(array, function(customer){
+        return customer.name.charAt(0).toLowerCase() === letter.toLowerCase();
+    });
+    // return the number of matching customers
+    return matchingCustomers.length;
+};
 
-var friendsCount;
+var friendFirstLetterCount = function(array, customerName, letter) {
+    // find the customer object with the given name
+    let customer = _.find(array, function(cust) {
+      return cust.name === customerName;
+    });
+  
+    // if customer is not found, return 0
+    if (!customer) {
+      return 0;
+    }
+  
+    // use _.reduce() to accumulate the number of friends with names starting with the given letter
+    let friendCount = _.reduce(customer.friends, function(accumulator, friend) {
+      // check that friend's name is defined before calling toLowerCase()
+      if (friend.name && friend.name.charAt(0).toLowerCase() === letter.toLowerCase()) {
+        return accumulator + 1;
+      } else {
+        return accumulator;
+      }
+    }, 0);
+  
+    return friendCount;
+  };
+
+  var friendsCount = function(array, customerName) {
+    // use _.filter() to find all customers who have a friend with the given name
+    let customers = _.filter(array, function(cust) {
+      return _.some(cust.friends, function(friend) {
+        return friend.name === customerName;
+      });
+    });
+  
+    // use _.map() to extract the names of the customers
+    let customerNames = _.map(customers, function(customer) {
+      return customer.name;
+    });
+  
+    // return the array of customer names
+    return customerNames;
+  };
 
 var topThreeTags;
 
