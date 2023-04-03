@@ -2,33 +2,32 @@
 // flatten /////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function flatten(array) {
-  return array.reduce((array, current) => array.concat(current), []);
+function flatten(arrays) {
+  return arrays.reduce((array1, array2) => array1.concat(array2));
 }
 
 // /////////////////////////////////////////////////////////////////////////////
 // loop ////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function loop(start, test, update, body) {
-  for (let value = start; test(value); value = update(value)) {
-    body(value);
-  }
+function loop(value, test, update, execute) {
+  if (test(value)) {
+    execute(value);
+    return loop(update(value), test, update, execute);
+  } 
 }
 
 // /////////////////////////////////////////////////////////////////////////////
 // every ///////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function every(array, predicate) {
-  for (let element of array) {
-    if (!predicate(element)) return false;
+function every(array, test) {
+  for (let i = 0; i < array.length; i++) {
+    if (!test(array[i])) {
+      return false;
+    }
   }
   return true;
-}
-
-function every2(array, predicate) {
-  return !array.some(element => !predicate(element));
 }
 
 // /////////////////////////////////////////////////////////////////////////////
@@ -36,14 +35,14 @@ function every2(array, predicate) {
 // /////////////////////////////////////////////////////////////////////////////
 
 function dominantDirection(text) {
-  let counted = countBy(text, char => {
+  let charArray = Array.from(text);
+  let directionCounts = countBy(charArray, char => {
     let script = characterScript(char.codePointAt(0));
-    return script ? script.direction : "none";
-  }).filter(({name}) => name != "none");
+    return script ? script.direction : undefined;
+  }).filter(({name}) => name !== undefined && name !== null);
 
-  if (counted.length == 0) return "ltr";
-
-  return counted.reduce((a, b) => a.count > b.count ? a : b).name;
+  let dominant = directionCounts.reduce((a, b) => a.count > b.count ? a : b).name;
+  return dominant.toLowerCase();
 }
 
 // /////////////////////////////////////////////////////////////////////////////
