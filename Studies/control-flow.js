@@ -5,7 +5,8 @@
  * the use of conditional statements such as the `if` statement, 
  * the `else if` statement, and the `else` statement.The `if` 
  * statement allows the program to execute a block of code if 
- * a specified condition is true. 
+ * a specified condition is true.  'else if' statements will 
+ * only execute if the previous conditions were false.
  */
 
 // For example, the following code will print "yes" if the value of `x` is greater than 1:
@@ -45,3 +46,25 @@ if (x > 0) {
    * also allows for fall-through execution if a match is 
    * found at some point.
    */
+
+  // For example 
+
+  var myArray = ['apple', 'banana', 'cherry'];
+var fruit = 'apple';
+
+switch (fruit) {
+  case 'apple':
+    console.log('Apple is a fruit.');
+    break;
+
+  case 'banana':
+    console.log('Banana is a fruit.');
+    break;
+
+  case 'cherry':
+    console.log('Cherry is a fruit.');
+    break;
+
+  default:
+    console.log('Unknown fruit.');
+}

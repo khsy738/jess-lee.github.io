@@ -41,3 +41,36 @@ for (let property in myObject) {
   let value = myObject[property];  // This is the loop iteration variable.
   console.log(property + " = " + value);
 }
+
+/**
+ *  The for loop has three statements: the initialization statement, 
+ * the condition statement, and the update statement. The initialization 
+ * statement is executed before the loop begins. It defines any variables and sets their initial values. 
+ * 
+ * The condition statement is a Boolean expression that is evaluated before each iteration 
+ * of the loop. If the expression evaluates to true, the loop executes the statements 
+ * inside the loop until the condition is no longer true. If the expression evaluates 
+ * to false, the loop does not execute the statements inside the loop.
+ * 
+ * The update statement is executed after each iteration of the loop. 
+ * Its purpose is to update one or more variables used inside the loop. 
+ * In the case of a  for loop, the update statement modifies the loop 
+ * variable, which controls the number of times the loop iterates.
+ */
+
+// Iterating through an array forwards
+
+var myArray = [1, 2, 3, 4, 5];
+
+for (let i = 0; i < myArray.length; i++) {
+  console.log(myArray[i]);
+}
+
+// and backwards
+
+var myArray = [1, 2, 3, 4, 5];
+var reversedArray = myArray.reverse();
+
+for (let i = reversedArray.length - 1; i >= 0; i--) {
+  console.log(reversedArray[i]);
+}

@@ -83,3 +83,58 @@ function calculateArea(width, height) {
    * memory somewhere (referenced), that closure stays ALIVE, and data can 
    * continue to exist in these closures! (See: our meeting-room app for an example!)
    */
+
+  // To access variables from the outer scope of a function, you can use the global() function. 
+  // The global() function allows you to reference variables declared outside the function, either on the top-level 
+  // or inside another function.
+
+let a = 1;  // global variable declared on the top-level
+let b = 2;  // global variable declared on the top-level
+
+function test() {
+  console.log(global('a'));  // prints 1
+  global('a', 3);  // updates the global 'a' variable
+}
+
+test();
+console.log(a);  // prints 3
+
+// To access variables declared in a block 
+// (inside a curly brace ( { and } )), you can use the var 
+// keyword to declare a variable in the block scope or use the let 
+// keyword to declare a variable in the block scope which is a block scoped variable.
+
+function test() {
+    var a = 1;  // block scoped variable declared using the let keyword
+    {
+      var b = 2;  // block scoped variable declared using the let keyword
+      console.log(b);  // prints 2
+      console.log(a);  // produces an error: ReferenceError: a is not defined
+    }
+    console.log(a);  // prints 1
+  }
+  
+  test();
+  
+  // Here's an example of closure 
+
+  function makeCounter() {
+    let count = 0;
+  
+    function incrementCount() {
+      count++;
+      console.log("The count is now " + count);
+    }
+  
+    return {
+      count: count,
+      increment: incrementCount
+    };
+  }
+  
+  const counter = makeCounter();
+  
+  console.log(counter.count); // 0
+  counter.increment();
+  console.log(counter.count); // 1
+  

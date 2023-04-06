@@ -57,3 +57,30 @@ myVariable = "someString";
  * JavaScript, as it can lead to unexpected behavior or errors if the variables are
  * accessed before they are declared.
  */
+
+// Here's an example of Hoisting 
+
+function myFunction() {
+    if (true) {
+      let i = 0;
+    }
+    console.log(i);
+  }
+  
+  myFunction();  // Outputs '0'
+
+  // let can be reassigned like var
+
+  let i = 0;
+while (i < 5) {
+  i += 1;
+  console.log(i);
+}
+
+// const has to be initialized with a value
+
+const i = 0;
+while (i < 5) {
+  i += 1;
+  console.log(i);
+}
